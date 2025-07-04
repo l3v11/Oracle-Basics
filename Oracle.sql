@@ -242,7 +242,7 @@ FROM customers
 WHERE customer_id > 1;
 
 -- SUM
-SELECT customer_id, SUM(order_amount) "Total Amount"
+SELECT customer_id, SUM(order_amount) AS "Total Amount"
 FROM orders
 GROUP BY customer_id;
 
