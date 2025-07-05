@@ -185,25 +185,25 @@ INSERT ALL
   VALUES (103, 3, 'Bamboo Copter', 120.75)
 
   INTO orders (order_id, customer_id, order_item, order_amount)
-  VALUES (104, 1, 'Shrink Ray', 2500.00)
+  VALUES (104, 1, 'Time Machine', 2500.00)
 
   INTO orders (order_id, customer_id, order_item, order_amount)
-  VALUES (105, 4, 'Memory Bread', 15.50)
+  VALUES (105, 4, 'Anywhere Door', 15.50)
 
   INTO orders (order_id, customer_id, order_item, order_amount)
   VALUES (106, 5, 'Air Cannon', 200.00)
 
   INTO orders (order_id, customer_id, order_item, order_amount)
-  VALUES (107, 7, 'Gadgets Pack', 750.25)
+  VALUES (107, 7, 'Time Machine', 750.25)
 
   INTO orders (order_id, customer_id, order_item, order_amount)
-  VALUES (108, 3, 'Invisibility Cloak', 3500.50)
+  VALUES (108, 3, 'Air Cannon', 3500.50)
 
   INTO orders (order_id, customer_id, order_item, order_amount)
-  VALUES (109, 4, 'Translation Jelly', 5.00)
+  VALUES (109, 4, 'Air Cannon', 5.00)
 
   INTO orders (order_id, customer_id, order_item, order_amount)
-  VALUES (110, 5, 'Propeller Hat', 99.50)
+  VALUES (110, 5, 'Time Machine', 99.50)
 SELECT * FROM dual;
 
 -- Show all records from orders
@@ -282,21 +282,19 @@ WHERE EXISTS (
 );
 
 -- ANY
-SELECT customer_id, customer_name
-FROM customers
-WHERE customer_id = ANY (
-  SELECT customer_id
+SELECT * FROM orders
+WHERE order_amount > ANY (
+  SELECT order_amount
   FROM orders
-  WHERE order_amount > 1000.00
+  WHERE order_item = 'Time Machine'
 );
 
 -- ALL
-SELECT order_id, order_item
-FROM orders
-WHERE order_amount >= ALL (
+SELECT * FROM orders
+WHERE order_amount <= ALL (
   SELECT order_amount
   FROM orders
-  WHERE customer_id = 5
+  WHERE order_item = 'Time Machine'
 );
 
 -- SELECT INTO
